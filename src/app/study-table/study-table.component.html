@@ -1,0 +1,62 @@
+<h1>Таблица уроков</h1>
+<div>
+  <table>
+    <tr>
+      <td>Номер</td>
+      <td>
+        <input #lessonNumber type="text"  type="number" [(ngModel)]="editingLesson.number" />
+      </td>
+    </tr>
+    <tr>
+      <td>Дата</td>
+      <td>
+        <input #lessonDate type="text" [(ngModel)]="editingLesson.date" />
+      </td>
+    </tr>
+    <tr>
+      <td>Тема</td>
+      <td>
+        <input #lessonTopic type="text" [(ngModel)]="editingLesson.topic" />
+      </td>
+    </tr>
+    <tr>
+      <td>Домашнее задание</td>
+      <td>
+        <input #lessonHometask type="text" [(ngModel)]="editingLesson.hometask" />
+      </td>
+    </tr>
+    <tr>
+      <td>Примечание</td>
+      <td>
+        <input
+          #lessonAdditional
+          type="text"
+          [(ngModel)]="editingLesson.additional"
+        />
+      </td>
+    </tr>
+  </table>
+</div>
+<button (click)="addNewLesson()">Добавить</button>
+<div>
+  <table style="width: 100%">
+    <tr>
+      <th>Номер</th>
+      <th>Дата</th>
+      <th>Тема</th>
+      <th>Домашнее задание</th>
+      <th>Примечание</th>
+      <th>Действия</th>
+    </tr>
+    <tr *ngFor="let lessonRecord of studyData.lessonRecords">
+      <td>{{ lessonRecord.number }}</td>
+      <td>{{ lessonRecord.date | date: "dd.MM.yyyy" }}</td>
+      <td>{{ lessonRecord.topic }}</td>
+      <td>{{ lessonRecord.hometask }}</td>
+      <td>{{ lessonRecord.additional }}</td>
+      <td>
+          <button (click)="deleteLesson(lessonRecord.id)">Удалить</button>
+      </td>
+    </tr>
+  </table>
+</div>
