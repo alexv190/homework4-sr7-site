@@ -35,11 +35,12 @@ export class StudyData {
   }
 
   createBlankLesson(): LessonRecord {
+    const number = this.determineNextNumber();
     const newLesson = new LessonRecord(
       this.lastUsedLessonId + 1,
-      this.determineNextNumber(),
+      number,
       new Date(),
-      '',
+      'Урок ' + number,
       '',
       ''
     );

@@ -1,41 +1,56 @@
 <h1>Таблица уроков</h1>
 <div>
-  <table>
+  <form [formGroup]="inputForm">
     <tr>
       <td>Номер</td>
       <td>
-        <input #lessonNumber type="text"  type="number" [(ngModel)]="editingLesson.number" />
+        <input
+          formControlName="number"
+          type="text"
+          type="number"
+          validateNumber
+        />
       </td>
     </tr>
     <tr>
       <td>Дата</td>
       <td>
-        <input #lessonDate type="text" [(ngModel)]="editingLesson.date" />
+        <input
+          formControlName="date"
+          type="text"
+        />
       </td>
     </tr>
     <tr>
       <td>Тема</td>
       <td>
-        <input #lessonTopic type="text" [(ngModel)]="editingLesson.topic" />
+        <input
+          formControlName="topic"
+          type="text"
+          validateMandatory
+        />
       </td>
     </tr>
     <tr>
       <td>Домашнее задание</td>
       <td>
-        <input #lessonHometask type="text" [(ngModel)]="editingLesson.hometask" />
+        <input
+          formControlName="hometask"
+          type="text"
+          validateMandatory
+        />
       </td>
     </tr>
     <tr>
       <td>Примечание</td>
       <td>
         <input
-          #lessonAdditional
+          formControlName="additional"
           type="text"
-          [(ngModel)]="editingLesson.additional"
         />
       </td>
     </tr>
-  </table>
+  </form>
 </div>
 <button (click)="addNewLesson()">Добавить</button>
 <div>
@@ -55,7 +70,7 @@
       <td>{{ lessonRecord.hometask }}</td>
       <td>{{ lessonRecord.additional }}</td>
       <td>
-          <button (click)="deleteLesson(lessonRecord.id)">Удалить</button>
+        <button (click)="deleteLesson(lessonRecord.id)">Удалить</button>
       </td>
     </tr>
   </table>

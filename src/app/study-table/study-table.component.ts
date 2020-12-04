@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { LessonRecord, Student, StudyData } from '../common/model';
 
 @Component({
@@ -7,26 +8,58 @@ import { LessonRecord, Student, StudyData } from '../common/model';
   styleUrls: ['./study-table.component.css'],
 })
 export class StudyTableComponent {
+  inputForm: FormGroup;
 
   @Input() studyData: StudyData;
-  editingLesson: LessonRecord;//объект Занятие, отображенный в форме для добавления
+  editingLesson: LessonRecord; //объект Занятие, отображенный в форме для добавления
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {
+    this.inputForm = fb.group({
+      number: fb.control({
+        value: '123',
+      }),
+      date: fb.control({
+        value: '123',
+      }),
+      topic: '',
+      hometask: '',
+      additional: '',
+    });
+  }
 
   ngOnInit(): void {
     this.editingLesson = this.studyData.createBlankLesson();
+    this.updateForm();
+  }
+
+  updateForm() {
+    this.inputForm.patchValue({
+      id: this.editingLesson.id,
+      number: this.editingLesson.number,
+      date: this.editingLesson.date,
+      topic: this.editingLesson.topic,
+      hometask: this.editingLesson.hometask,
+      additional: this.editingLesson.additional,
+    });
   }
 
   addNewLesson() {
-    this.editingLesson.number = +this.editingLesson.number; //convert to int
-   
+    const formValues = this.inputForm.getRawValue();
+    this.editingLesson.number = +formValues.number; //convert to int
+    this.editingLesson.date = formValues.date; 
+    this.editingLesson.topic = formValues.topic;
+    this.editingLesson.hometask = formValues.hometask; 
+    this.editingLesson.additional = formValues.additional;
+
     const addingResult = this.studyData.addLesson(this.editingLesson);
-    if (addingResult != null) {//error
+    if (addingResult != null) {
+      //error
       alert(addingResult);
       return;
     }
 
     this.editingLesson = this.studyData.createBlankLesson();
+    this.updateForm();
   }
 
   deleteLesson(lessonId: number) {
@@ -34,15 +67,14 @@ export class StudyTableComponent {
       return lesson.id == lessonId;
     });
     if (lessonToDelete != null) {
-      const deleteIndex = this.studyData.lessonRecords.indexOf(lessonToDelete)
+      const deleteIndex = this.studyData.lessonRecords.indexOf(lessonToDelete);
       this.studyData.lessonRecords.splice(deleteIndex, 1);
       for (let student of this.studyData.students) {
-        student.grades.splice(deleteIndex, 1)
+        student.grades.splice(deleteIndex, 1);
       }
       console.log('удален ', lessonToDelete);
     } else {
       alert('Ошибка');
     }
   }
-
 }

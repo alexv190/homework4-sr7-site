@@ -5,6 +5,8 @@
       <th>ФИО</th>
       <th *ngFor="let lesson of studyData.lessonRecords">
         {{ lesson.date | date: "dd.MM.yyyy" }}
+        <br />
+        {{ lesson.topic }}
       </th>
       <th>Средний балл</th>
       <th>Округленный балл</th>
@@ -32,8 +34,6 @@
           </ng-template>
         </select>
       </td>
-      <!-- <td>{{ student.average | number: "1.0-2" }}</td>
-      <td>{{ student.rounded }}</td> -->
       <td>{{ (student.average.valueOf() > 0) ? (student.average | number : "1.0-2") : '' }}</td>
       <td>{{ (student.rounded.valueOf() > 0) ? student.rounded : ''}}</td>
       <td>{{ student.additional }}</td>

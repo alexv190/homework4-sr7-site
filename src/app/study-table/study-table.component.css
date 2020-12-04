@@ -10,3 +10,10 @@ tr,
 td {
   border: 0.5px solid gray;
 }
+
+input.ng-touched.ng-invalid {
+  border: solid red 2px;
+}
+/* input.ng-touched.ng-valid {
+  border: solid green 2px;
+} */
