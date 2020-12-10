@@ -8,6 +8,7 @@ import { GradeTableComponent } from './grade-table/grade-table.component';
 import { StudentsAndLessonsComponent } from './students-and-lessons/students-and-lessons.component';
 import { ValidateNumberDirective } from './study-table/validate-number.directive';
 import { ValidateMandatoryDirective } from './study-table/validate-mandatory.directive';
+import { ValidateDateDirective } from './study-table/validate-date.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ValidateMandatoryDirective } from './study-table/validate-mandatory.dir
     StudentsAndLessonsComponent,
     ValidateNumberDirective,
     ValidateMandatoryDirective,
+    ValidateDateDirective,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],

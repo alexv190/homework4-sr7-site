@@ -39,9 +39,9 @@ export class StudyData {
     const newLesson = new LessonRecord(
       this.lastUsedLessonId + 1,
       number,
-      new Date(),
+      new Date(new Date().setHours(0, 0, 0, 0)),
       'Урок ' + number,
-      '',
+      'Д/з',
       ''
     );
     this.lastUsedLessonId++;

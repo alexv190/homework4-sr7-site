@@ -15,12 +15,8 @@ export class StudyTableComponent {
 
   constructor(private fb: FormBuilder) {
     this.inputForm = fb.group({
-      number: fb.control({
-        value: '123',
-      }),
-      date: fb.control({
-        value: '123',
-      }),
+      number: '',
+      date: '',
       topic: '',
       hometask: '',
       additional: '',
@@ -29,10 +25,10 @@ export class StudyTableComponent {
 
   ngOnInit(): void {
     this.editingLesson = this.studyData.createBlankLesson();
-    this.updateForm();
+    this.updateFormFromEditingLesson();
   }
 
-  updateForm() {
+  private updateFormFromEditingLesson() {
     this.inputForm.patchValue({
       id: this.editingLesson.id,
       number: this.editingLesson.number,
@@ -59,7 +55,7 @@ export class StudyTableComponent {
     }
 
     this.editingLesson = this.studyData.createBlankLesson();
-    this.updateForm();
+    this.updateFormFromEditingLesson();
   }
 
   deleteLesson(lessonId: number) {
