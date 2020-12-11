@@ -22,6 +22,7 @@
         "
       >
         <select
+          validateGrade
           (change)="
             updateGradeForStudent(student, lessonNum, $event.target.value)
           "
@@ -34,8 +35,14 @@
           </ng-template>
         </select>
       </td>
-      <td>{{ (student.average.valueOf() > 0) ? (student.average | number : "1.0-2") : '' }}</td>
-      <td>{{ (student.rounded.valueOf() > 0) ? student.rounded : ''}}</td>
+      <td>
+        {{
+          student.average.valueOf() > 0
+            ? (student.average | number: "1.0-2")
+            : ""
+        }}
+      </td>
+      <td>{{ student.rounded.valueOf() > 0 ? student.rounded : "" }}</td>
       <td>{{ student.additional }}</td>
     </tr>
   </table>

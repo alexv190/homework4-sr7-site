@@ -44,6 +44,7 @@ export class StudyData {
       'Д/з',
       ''
     );
+
     this.lastUsedLessonId++;
     return newLesson;
   }

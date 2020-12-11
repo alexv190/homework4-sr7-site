@@ -32,12 +32,19 @@ export class StudyTableComponent {
     this.inputForm.patchValue({
       id: this.editingLesson.id,
       number: this.editingLesson.number,
-      date: this.editingLesson.date,
+      date: this.dateToYMD(this.editingLesson.date),
       topic: this.editingLesson.topic,
       hometask: this.editingLesson.hometask,
       additional: this.editingLesson.additional,
     });
   }
+
+  dateToYMD(date:Date) {
+    var d = date.getDate();
+    var m = date.getMonth() + 1; //Month from 0 to 11
+    var y = date.getFullYear();
+    return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+}
 
   addNewLesson() {
     const formValues = this.inputForm.getRawValue();
