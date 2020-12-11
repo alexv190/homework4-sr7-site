@@ -10,6 +10,10 @@ import { ValidateNumberDirective } from './study-table/validate-number.directive
 import { ValidateMandatoryDirective } from './study-table/validate-mandatory.directive';
 import { ValidateDateDirective } from './study-table/validate-date.directive';
 import { ValidateGradeDirective } from './grade-table/validate-grade.directive';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,15 @@ import { ValidateGradeDirective } from './grade-table/validate-grade.directive';
     ValidateDateDirective,
     ValidateGradeDirective,
   ],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatCardModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

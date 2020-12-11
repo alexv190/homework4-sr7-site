@@ -1,59 +1,71 @@
-<h1>Таблица уроков</h1>
-<div>
-  <form [formGroup]="inputForm" novalidate (ngSubmit)="addNewLesson()">
-    <tr>
-      <td>Номер урока</td>
-      <td>
-        <input
-          formControlName="number"
-          type="text"
-          type="number"
-          validateNumber
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Дата</td>
-      <td>
-        <input
-          formControlName="date"
-          type="date"
-          validateDate
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Тема</td>
-      <td>
-        <input
-          formControlName="topic"
-          type="text"
-          validateMandatory
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Домашнее задание</td>
-      <td>
-        <input
-          formControlName="hometask"
-          type="text"
-          validateMandatory
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Примечание</td>
-      <td>
-        <input
-          formControlName="additional"
-          type="text"
-        />
-      </td>
-    </tr>
-    <button type="submit" [disabled]="inputForm.invalid">Добавить</button>
-  </form>
-  
+<mat-card class="example-card" style="width: 250px;">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Таблица уроков</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <form [formGroup]="inputForm" novalidate (ngSubmit)="addNewLesson()">
+        <p>
+          <mat-form-field appearance="standard">
+            <mat-label>Номер урока</mat-label>
+            <input matInput formControlName="number" type="number" validateNumber />
+            <mat-error
+              *ngIf="inputForm.controls?.number?.hasError('validateNumberError')"
+            >
+              {{ inputForm.controls?.number.getError("validateNumberError") }}
+            </mat-error>
+          </mat-form-field>
+        </p>
+    
+        <p>
+          <mat-form-field appearance="standard">
+            <mat-label>Дата</mat-label>
+            <input matInput formControlName="date" type="date" validateDate />
+            <mat-error *ngIf="inputForm.controls?.date?.hasError('wrongDate')">
+              {{ inputForm.controls?.date.getError("wrongDate") }}
+            </mat-error>
+          </mat-form-field>
+        </p>
+    
+        <p>
+          <mat-form-field appearance="standard">
+            <mat-label>Тема</mat-label>
+            <input matInput formControlName="topic" type="text" validateMandatory />
+            <mat-error
+              *ngIf="inputForm.controls?.topic?.hasError('validateMandatoryError')"
+            >
+              {{ inputForm.controls?.topic.getError("validateMandatoryError") }}
+            </mat-error>
+          </mat-form-field>
+        </p>
+    
+        <p>
+          <mat-form-field appearance="standard">
+            <mat-label>Домашнее задание</mat-label>
+            <input matInput formControlName="hometask" type="text" validateMandatory  />
+            <mat-error
+              *ngIf="inputForm.controls?.topic?.hasError('validateMandatoryError')"
+            >
+              {{ inputForm.controls?.topic.getError("validateMandatoryError") }}
+            </mat-error>
+          </mat-form-field>
+        </p>
+    
+        <p>
+          <mat-form-field appearance="standard">
+            <mat-label>Примечание</mat-label>
+            <input matInput formControlName="additional" type="text" />
+          </mat-form-field>
+        </p>
+        <button type="submit" [disabled]="inputForm.invalid">Добавить</button>
+      </form>
+  </mat-card-content>
+</mat-card>
+
+
+<div class="example-container">
+ 
 </div>
 
 <div>
